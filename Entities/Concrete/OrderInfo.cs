@@ -12,11 +12,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public int Quantity { get; set; }
         public int MealId { get; set; } 
-        public int WaiterId { get; set; }
-        public int OrderId { get; set; } 
         public int OrderStatus { get; set; } 
         public virtual Meal Meal { get; set; }
-        public virtual Waiter Waiter { get; set; }
-        public virtual Order Order { get; set; }
     }
 }

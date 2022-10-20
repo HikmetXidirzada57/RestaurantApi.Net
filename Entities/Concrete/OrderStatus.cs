@@ -8,8 +8,8 @@ namespace Entities.Concrete
 {
     public enum OrderStatus
     {
-        Processing = 1,
-        Delivered = 2,
-        Failed = 3,
+        New=1,
+        Processing = 2,
+        ItsOver = 3
     }
 }

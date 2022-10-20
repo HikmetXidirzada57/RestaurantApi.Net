@@ -11,7 +11,7 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public string? IconUrl { get; set; };
+        public string? IconUrl { get; set; }
         public bool IsDeleted { get; set; }
     } 
 }
