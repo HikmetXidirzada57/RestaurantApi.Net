@@ -15,6 +15,6 @@ namespace Business.Abstract
         void Update(Role role);
         List<Role> GetAllRoles();
         Role GetRole(int id);
-        //Role GetRolebyUserId(int userId);
+        Role GetRolebyUserId(int userId);
     }
 }

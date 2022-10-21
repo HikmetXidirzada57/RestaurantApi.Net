@@ -38,6 +38,11 @@ namespace Business.Concrete
             return _rolDal.Get(x => x.Id == id);
         }
 
+        public Role GetRolebyUserId(int userId)
+        {
+            return _rolDal.GetUserRole(userId);
+        }
+
         //public Role GetRolebyUserId(int userId)
         //{
         //    return _rolDal.Get(userId);
@@ -49,7 +54,7 @@ namespace Business.Concrete
         }
 
         public void Update(Role role)
-        {
+        { 
             _rolDal.Update(role);
         }
     }

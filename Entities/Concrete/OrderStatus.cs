@@ -10,6 +10,7 @@ namespace Entities.Concrete
     {
         New=1,
         Processing = 2,
-        ItsOver = 3
+        ItsOver = 5,
+        Cancelled=6
     }
 }

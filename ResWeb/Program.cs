@@ -1,4 +1,9 @@
+using Business.Abstract;
+using Business.Concrete;
+using Core.Security.Hasing;
 using Core.Security.JWT;
+using Core.Security.TokenHandler;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -39,8 +44,18 @@ options.SerializerSettings
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RestaurantDbContext>();
+builder.Services.AddScoped<IAccaountService, AccaountManager>();
+builder.Services.AddScoped<IAccauntDal, EFAccaountDal>();
 
-var app = builder.Build();
+builder.Services.AddScoped<IUsertoRoleDal, EFUsertoRoleDal>();
+builder.Services.AddScoped<IUsertoRoleService, UsertoRoleManager>();
+
+builder.Services.AddScoped<IRoleDal, EFRoleDal>();
+builder.Services.AddScoped<IRoleService, RoleManager>();
+builder.Services.AddScoped<HasingHandler>();
+builder.Services.AddScoped<TokenGenerator>();
+builder.Services.AddScoped<JWTKey>();
+
 
 builder.Services.AddCors(options =>
 {
@@ -53,6 +68,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
         });
 });
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -64,7 +80,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
-
 
 app.UseAuthentication();
 app.UseAuthorization();

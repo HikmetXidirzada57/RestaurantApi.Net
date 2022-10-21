@@ -12,27 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFMealDal : EFEntityRepositoryBase<Meal, RestaurantDbContext>, IMealDal
     {
-        public void Add(Meal entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Meal entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Meal Get(Expression<Func<Meal, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Meal> GetAll(Expression<Func<Meal, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Meal entity)
+        public  Task<Meal> GetMealByCategory(int categoryId)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entity.Models;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,6 +27,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<OrderInfo> OrderInfos { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Waiter> Waiters { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UsertoRole> UsertoRoles { get; set; }
     }
 
     //protected override void OnModalCreating(ModelBuilder modelBuilder)

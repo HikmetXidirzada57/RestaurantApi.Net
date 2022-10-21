@@ -36,8 +36,8 @@ namespace Core.Security.TokenHandler
                 Expires = DateTime.UtcNow.AddDays(50),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature),
-                Audience = "My Restaurant",
-                Issuer = "My Restaurant"
+                Audience = null,
+                Issuer = null
             };
             
             var token = jwtTokenHandler.CreateToken(tokenDescription);

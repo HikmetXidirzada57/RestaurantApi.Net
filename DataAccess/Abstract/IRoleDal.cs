@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IRoleDal : IEntityRepository<Role>
     {
+        Role GetUserRole(int userId);
     }
 }

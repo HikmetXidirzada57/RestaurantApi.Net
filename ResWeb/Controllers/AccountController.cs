@@ -59,7 +59,7 @@ namespace ResWeb.Controllers
             var user =_service.FindUserByEmail(value.Email);
             if (user != null)
             {
-                return Ok(new { status = 201, message = "Email already exist" });
+                return Ok(new { status = 201, message = "Email already exist"});
             }
             var password=value.Password;
             if (password != null && password.Length >= 5)
