@@ -15,8 +15,10 @@ namespace Entities.Concrete
         public decimal TotalPrice { get; set; }
         public int TableId { get; set; }
         public int WaiterId { get; set; }
+        public string TableName { get; set; } = null!;
+        public string WaiterName { get; set; } = null!;
         public virtual Table Table { get; set; }
         public virtual Waiter Waiter { get; set; }
-        public List<OrderInfo> OrderItem { get; set; }
+        public virtual List<OrderInfo> OrderItem { get; set; }
     }
 }

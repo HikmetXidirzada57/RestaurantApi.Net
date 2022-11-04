@@ -40,13 +40,25 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 options.SerializerSettings
 .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RestaurantDbContext>();
+builder.Services.AddScoped<IMealService, MealManager>();
+builder.Services.AddScoped<IMealDal, EFMealDal>();
+builder.Services.AddScoped<IMealCategoryDal, EFMealCategoryDal>();
+builder.Services.AddScoped<IMealCategoryService,MealCategoryManager>();
 builder.Services.AddScoped<IAccaountService, AccaountManager>();
 builder.Services.AddScoped<IAccauntDal, EFAccaountDal>();
-
+builder.Services.AddScoped<IWaiterDal, EFWaiterDal>();
+builder.Services.AddScoped<IWaiterService,WaiterManager>();
+builder.Services.AddScoped<ITableDal, EFTableDal>();
+builder.Services.AddScoped<ITableService, TableManager>();
+builder.Services.AddScoped<IOrderDal, EFOrderDal>();
+builder.Services.AddScoped<IOrderService,OrderManager>();
+builder.Services.AddScoped<IOrderInfoDal, EFOrderInfoDal>();
 builder.Services.AddScoped<IUsertoRoleDal, EFUsertoRoleDal>();
 builder.Services.AddScoped<IUsertoRoleService, UsertoRoleManager>();
 
@@ -55,6 +67,9 @@ builder.Services.AddScoped<IRoleService, RoleManager>();
 builder.Services.AddScoped<HasingHandler>();
 builder.Services.AddScoped<TokenGenerator>();
 builder.Services.AddScoped<JWTKey>();
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 builder.Services.AddCors(options =>

@@ -10,5 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IWaiterDal:IEntityRepository<Waiter>
     {
+        Task<List<Waiter>> GetAll();
+        Task<Waiter> GetByid(int id);
     }
 }

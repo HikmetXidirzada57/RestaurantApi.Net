@@ -10,6 +10,10 @@ namespace DataAccess.Abstract
 {
     public interface IMealDal : IEntityRepository<Meal>
     {
-        Task<Meal> GetMealByCategory(int categoryId);
+        Task<List<Meal>> GetMealByCategory(int categoryId);
+        Task<List<Meal>> GetAllMenu();
+        Task<Meal> GetById(int id);
+        Task<Meal> AddMeal(Meal meal);
+        //void Update(Meal meal,int id);
     }
 }

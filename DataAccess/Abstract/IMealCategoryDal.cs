@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IMealCategoryDal:IEntityRepository<MealCategory>
     {
+        Task<List<MealCategory>> GetAllCategory();
     }
 }

@@ -13,6 +13,6 @@ namespace Core.Abstract
         void Delete(TEntity entity);
         void Update(TEntity entity);
         List<TEntity>GetAll(Expression<Func<TEntity, bool>> filter=null); 
-        TEntity Get(Expression<Func<TEntity, bool>> filter);
+        TEntity Get(Expression<Func<TEntity, bool>> filter=null);
     }
 }
