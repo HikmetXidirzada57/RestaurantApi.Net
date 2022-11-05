@@ -11,10 +11,12 @@ namespace Business.Abstract
     public interface IOrderService
     {
         void Add(AddOrderDTO dto);
-        void UpdateOrder(OrderDTO dto);
-        void Delete(int id);
+        void UpdateOrder(Order order);
+        void Delete(Order order);
+        Order GetById(int id);
         Task<List<Order>> GetAllOrders();
         Task<List<Order>> GetAllOrdersByWaiter(int waiterId);
-        Task<List<Order>> GetAllOrdersByRable(int tableId);
+        Task<List<Order>> GetAllOrdersByTable(int tableId);
+
     }
 }

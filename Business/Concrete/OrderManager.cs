@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTO;
 using System;
@@ -11,34 +12,55 @@ namespace Business.Concrete
 {
     public class OrderManager : IOrderService
     {
+
+        private readonly IOrderDal _dal;
+
+        public OrderManager(IOrderDal dal)
+        {
+            _dal = dal;
+        }
+
         public void Add(AddOrderDTO dto)
         {
-            throw new NotImplementedException();
+           Order order = new Order()
+           {
+               ModifiedDate = dto.ModifiedDate,
+               PurchaseDate=DateTime.Now,
+               WaiterId=dto.WaiterId,
+               TableId=dto.TableId,
+                TotalPrice=dto.TotalPrice,
+           };
+            _dal.Add(order);
         }
 
-        public void Delete(int id)
+        public void Delete(Order order)
         {
-            throw new NotImplementedException();
+            _dal.Delete(order);
         }
 
-        public Task<List<Order>> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders()
         {
-            throw new NotImplementedException();
+           return await _dal.GetAllOrders();
         }
 
-        public Task<List<Order>> GetAllOrdersByRable(int tableId)
+        public async Task<List<Order>> GetAllOrdersByTable(int tableId)
         {
-            throw new NotImplementedException();
+            return await _dal.GetAllOrdersByTable(tableId);
         }
 
         public Task<List<Order>> GetAllOrdersByWaiter(int waiterId)
         {
-            throw new NotImplementedException();
+            return _dal.GetAllOrdersByWaiter(waiterId);
         }
 
-        public void UpdateOrder(OrderDTO dto)
+        public Order GetById(int id)
         {
-            throw new NotImplementedException();
+           return _dal.Get(x=>x.Id==id);
+        }
+
+        public void UpdateOrder(Order order)
+        {
+           _dal.Update(order);
         }
     }
 }

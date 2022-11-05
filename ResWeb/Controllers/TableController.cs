@@ -51,7 +51,7 @@ namespace ResWeb.Controllers
             }
             catch (Exception e)
             {
-                 return Ok(new {status=403,message=e.Message}); 
+                 return BadRequest(new {status=403,message=e.Message}); 
             }
         }
 
