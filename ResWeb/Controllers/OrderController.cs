@@ -52,22 +52,32 @@ namespace ResWeb.Controllers
             try
             {
                 _orderServices.Add(value);
-                return Ok(new { status = 200, message = "order createdsuccesfully" });
+                return Ok(new { status = 200, message = "order created succesfully" });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest(new { status = 403, message = "some error happened" });
+                return BadRequest(new { status = 403, message = e.Message });
             }
         }
 
         // PUT api/<OrderController>/5
-        [HttpPut("updateOrder/{orderId}")]
-        public IActionResult Put(int orderId)
+        [HttpPut("update/{id}")]
+        public  IActionResult Update(int? id, OrderDTO  order)
         {
-            var order = _orderServices.GetById(orderId);
-            _orderServices.UpdateOrder(order);
+            if (id == null) return NotFound();
+            try
+            {
+                var mappedOrder = _mapper.Map<Order>(order);
+                _orderServices.UpdateOrder(id.Value,mappedOrder);
+                return Ok(new { statis = 200, message = "order updated" });
 
-            return Ok(new { statis = 200, message = "order updated" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { status = 400, message = e.Message });
+            }
+          
+
         }
 
         // DELETE api/<OrderController>/5

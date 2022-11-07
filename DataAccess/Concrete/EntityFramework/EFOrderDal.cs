@@ -1,4 +1,5 @@
-﻿using Core.Concrete.EntityFramework;
+﻿using CloudinaryDotNet.Actions;
+using Core.Concrete.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +39,13 @@ namespace DataAccess.Concrete.EntityFramework
                 Include(x => x.Table).
                 Include(x => x.OrderItem).
                 ThenInclude(x => x.Status).Where(x => x.WaiterId==waiterId).ToListAsync();
+        }
+
+        public async Task UpdateOrder(int id ,Order order)
+        {
+            using RestaurantDbContext context = new ();
+            context.Orders.Update(order);
+            await context.SaveChangesAsync();
         }
     }
 }

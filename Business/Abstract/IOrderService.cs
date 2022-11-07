@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface IOrderService
     {
         void Add(AddOrderDTO dto);
-        void UpdateOrder(Order order);
+        Task UpdateOrder(int id ,Order order);
         void Delete(Order order);
         Order GetById(int id);
         Task<List<Order>> GetAllOrders();

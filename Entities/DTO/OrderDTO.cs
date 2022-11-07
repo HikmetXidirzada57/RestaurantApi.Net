@@ -8,5 +8,8 @@ namespace Entities.DTO
 {
     public class OrderDTO
     {
+        public DateTime ModifiedDate { get; set; }
+        public int TableId { get; set; }
+        public int WaiterId { get; set; }
     }
 }

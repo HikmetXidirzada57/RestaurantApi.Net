@@ -13,5 +13,6 @@ namespace DataAccess.Abstract
         Task<List<Order>> GetAllOrders();
         Task<List<Order>> GetAllOrdersByWaiter(int waiterId);
         Task<List<Order>> GetAllOrdersByTable(int tableId);
+        Task UpdateOrder( int id ,Order order);
     }
 }

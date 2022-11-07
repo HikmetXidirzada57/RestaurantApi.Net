@@ -58,9 +58,9 @@ namespace Business.Concrete
            return _dal.Get(x=>x.Id==id);
         }
 
-        public void UpdateOrder(Order order)
+        public async Task UpdateOrder(int id, Order order)
         {
-           _dal.Update(order);
+           await _dal.UpdateOrder(id ,order);
         }
     }
 }
