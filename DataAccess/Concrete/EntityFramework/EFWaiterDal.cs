@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFWaiterDal : EFEntityRepositoryBase<Waiter, RestaurantDbContext>, IWaiterDal
     {
-        public async Task<List<Waiter>> GetAll()
+        public async Task<List<Waiter>> GetAll()    
         {
             RestaurantDbContext context = new();
             return await context.Waiters.Where(x => !x.IsDeleted).ToListAsync();

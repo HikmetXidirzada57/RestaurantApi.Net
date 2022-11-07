@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
             return await context.Orders.Include(x=>x.Waiter).
                 Include(x=>x.Table).
                 Include(x=>x.OrderItem).
-                ThenInclude(x=>x.OrderStatus).ToListAsync();
+                ThenInclude(x=>x.Status).ToListAsync();
         }
 
         public async Task<List<Order>> GetAllOrdersByTable(int tableId)
@@ -27,7 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
             return await context.Orders.Include(x => x.Waiter).
                 Include(x => x.Table). 
                 Include(x => x.OrderItem).
-                ThenInclude(x => x.OrderStatus).Where(x => x.TableId == tableId).ToListAsync();
+                ThenInclude(x => x.Status).Where(x => x.TableId == tableId).ToListAsync();
         }
 
         public async Task<List<Order>> GetAllOrdersByWaiter(int waiterId)
@@ -37,7 +37,7 @@ namespace DataAccess.Concrete.EntityFramework
             return await context.Orders.Include(x => x.Waiter).
                 Include(x => x.Table).
                 Include(x => x.OrderItem).
-                ThenInclude(x => x.OrderStatus).Where(x => x.WaiterId==waiterId).ToListAsync();
+                ThenInclude(x => x.Status).Where(x => x.WaiterId==waiterId).ToListAsync();
         }
     }
 }

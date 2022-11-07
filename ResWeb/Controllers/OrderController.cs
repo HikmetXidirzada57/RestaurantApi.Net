@@ -62,11 +62,9 @@ namespace ResWeb.Controllers
 
         // PUT api/<OrderController>/5
         [HttpPut("updateOrder/{orderId}")]
-        public IActionResult Put(int orderId,int tableId,int waiterId)
+        public IActionResult Put(int orderId)
         {
             var order = _orderServices.GetById(orderId);
-            order.TableId = tableId;
-            order.WaiterId = waiterId;
             _orderServices.UpdateOrder(order);
 
             return Ok(new { statis = 200, message = "order updated" });
@@ -74,8 +72,21 @@ namespace ResWeb.Controllers
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(Order order)
         {
+            JsonResult res = new(new{ });
+
+            try
+            {
+                _orderServices.Delete(order);
+                res.Value = new { status = 200, message = "order deleted" };
+            }
+            catch (Exception e)
+            {
+                res.Value = new { status = 400, message = e.Message };
+                throw;
+            }
+            return res;
         }
     }
 }
