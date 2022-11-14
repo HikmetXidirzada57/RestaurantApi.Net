@@ -14,7 +14,7 @@ namespace Business.Abstract
         Task UpdateOrder(int id ,Order order);
         void Delete(Order order);
         Order GetById(int id);
-        Task<List<Order>> GetAllOrders();
+        List<Order> GetAllOrders();
         Task<List<Order>> GetAllOrdersByWaiter(int waiterId);
         Task<List<Order>> GetAllOrdersByTable(int tableId);
 

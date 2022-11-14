@@ -10,7 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IOrderDal:IEntityRepository<Order>
     {
-        Task<List<Order>> GetAllOrders();
+        List<Order> GetAllOrders();
         Task<List<Order>> GetAllOrdersByWaiter(int waiterId);
         Task<List<Order>> GetAllOrdersByTable(int tableId);
         Task UpdateOrder( int id ,Order order);

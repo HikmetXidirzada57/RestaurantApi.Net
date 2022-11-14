@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public enum OrderStatus
+    public  enum OrderStatus
     {
         New=1,
         Processing = 2,
-        ItsOver = 5,
-        Cancelled=6
+        ItsOver = 3,
+        Cancelled=4
     }
 }

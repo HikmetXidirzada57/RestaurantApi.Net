@@ -38,9 +38,9 @@ namespace Business.Concrete
             _dal.Delete(order);
         }
 
-        public async Task<List<Order>> GetAllOrders()
+        public List<Order> GetAllOrders()
         {
-           return await _dal.GetAllOrders();
+           return  _dal.GetAllOrders();
         }
 
         public async Task<List<Order>> GetAllOrdersByTable(int tableId)

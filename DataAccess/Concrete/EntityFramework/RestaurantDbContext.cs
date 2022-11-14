@@ -24,7 +24,8 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Meal> Meals { get; set; }
         public DbSet<MealCategory> MealCategories { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderInfo> OrderInfos { get; set; }
+        public DbSet<OrderInfo> OrderInfos { get; set; } 
+        public DbSet<OrderHistory> OrderHistories { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Waiter> Waiters { get; set; }
         public DbSet<User> Users { get; set; }

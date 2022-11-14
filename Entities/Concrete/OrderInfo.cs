@@ -13,8 +13,6 @@ namespace Entities.Concrete
         public int Quantity { get; set; }
         public string? MealName { get; set; }
         public int MealId { get; set; }
-        public int StatusCode { get; set; } 
-        public OrderStatus Status { get; }
         public virtual Meal Meal { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221110161459_orderStatusAdded")]
+    partial class orderStatusAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,30 +191,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.OrderHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderHistories");
-                });
-
             modelBuilder.Entity("Entities.Concrete.OrderInfo", b =>
                 {
                     b.Property<int>("Id")
@@ -231,6 +209,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusCode")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -342,15 +323,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Waiter");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.OrderHistory", b =>
-                {
-                    b.HasOne("Entities.Concrete.Order", null)
-                        .WithMany("OrderHistories")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Entities.Concrete.OrderInfo", b =>
                 {
                     b.HasOne("Entities.Concrete.Meal", "Meal")
@@ -368,8 +340,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Order", b =>
                 {
-                    b.Navigation("OrderHistories");
-
                     b.Navigation("OrderItem");
                 });
 #pragma warning restore 612, 618

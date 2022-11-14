@@ -13,22 +13,26 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EFOrderDal : EFEntityRepositoryBase<Order, RestaurantDbContext>, IOrderDal
     {
-        public async Task<List<Order>> GetAllOrders()
+        public  List<Order> GetAllOrders()
         {
             using RestaurantDbContext context = new ();
-            return await context.Orders.Include(x=>x.Waiter).
-                Include(x=>x.Table).
-                Include(x=>x.OrderItem).
-                ThenInclude(x=>x.Status).ToListAsync();
+            var orders = context.Orders.
+                Include(x => x.Waiter).
+                Include(x => x.Table).
+                Include(x => x.OrderItem).
+                Include(x=>x.OrderHistories)
+                .ToList();    
+            return orders;
         }
 
         public async Task<List<Order>> GetAllOrdersByTable(int tableId)
         {
             using RestaurantDbContext context=new ();
-            return await context.Orders.Include(x => x.Waiter).
+            return await context.Orders.
+                Include(x => x.Waiter).
                 Include(x => x.Table). 
                 Include(x => x.OrderItem).
-                ThenInclude(x => x.Status).Where(x => x.TableId == tableId).ToListAsync();
+                Include(x => x.OrderHistories).Where(x => x.TableId == tableId).ToListAsync();
         }
 
         public async Task<List<Order>> GetAllOrdersByWaiter(int waiterId)
@@ -38,7 +42,7 @@ namespace DataAccess.Concrete.EntityFramework
             return await context.Orders.Include(x => x.Waiter).
                 Include(x => x.Table).
                 Include(x => x.OrderItem).
-                ThenInclude(x => x.Status).Where(x => x.WaiterId==waiterId).ToListAsync();
+                Include(x => x.OrderHistories).Where(x => x.WaiterId==waiterId).ToListAsync();
         }
 
         public async Task UpdateOrder(int id ,Order order)

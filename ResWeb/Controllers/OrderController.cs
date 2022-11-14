@@ -26,20 +26,20 @@ namespace ResWeb.Controllers
 
 
         [HttpGet]
-        public async Task<List<Order>> GetAllOrders()
+        public  List<Order> GetAllOrders()
         {
-            return await _orderServices.GetAllOrders();
+            return  _orderServices.GetAllOrders();
         }
 
 
-        [HttpGet("byWaiter/{id}")]
+        [HttpGet("{waiterId}")]
         public async Task<List<Order>> GetAllOrdersByWaiter(int waiterId)
         {
             return await _orderServices.GetAllOrdersByWaiter(waiterId);
         }
 
 
-        [HttpGet("byTable/{id}")]
+        [HttpGet("{tableId}")]
         public async Task<List<Order>> GetAllOrdersByTable(int tableId)
         {
             return await _orderServices.GetAllOrdersByTable(tableId);

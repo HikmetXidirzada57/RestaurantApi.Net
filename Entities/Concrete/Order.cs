@@ -20,5 +20,6 @@ namespace Entities.Concrete
         public virtual Table Table { get; set; }
         public virtual Waiter Waiter { get; set; }
         public virtual List<OrderInfo> OrderItem { get; set; }
-    }
+        public virtual List<OrderHistory>?  OrderHistories{ get; set; } 
+    } 
 }
